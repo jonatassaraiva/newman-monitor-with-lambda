@@ -1,0 +1,22 @@
+{
+  "name": "newman-monitor-with-lambda",
+  "version": "1.0.0",
+  "description": "Project to monitor APIs in Postman Colections",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonatassaraiva/newman-monitor-with-lambda.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonatassaraiva/newman-monitor-with-lambda/issues"
+  },
+  "homepage": "https://github.com/jonatassaraiva/newman-monitor-with-lambda#readme",
+  "dependencies": {
+    "newman": "^3.9.2"
+  }
+}
