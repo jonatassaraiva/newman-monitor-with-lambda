@@ -3,6 +3,8 @@
 const newman = require('newman');
 const Promise = require('bluebird');
 
+const repository = require('./repository');
+
 const runner = {
   run() {
     return new Promise((resolve, reject) => {
@@ -10,16 +12,18 @@ const runner = {
       newman.run({
         collection: require('../data/collection.json'),
         reporters: 'cli'
-      }, function (err, summary) {
+      }, function (err) {
         if (err) {
           return reject(err);
         }
 
-        const dataResult = {
-          stats: summary.run.stats,
-          requests: dataRequests
-        }
-        return resolve(dataResult);
+        repository.batchCreate(dataRequests)
+          .then(results => {
+            return resolve(results);
+          })
+          .catch(err => {
+            return reject(err);
+          });
       })
       .on('request', (err, request) => {
         if (err) { 
@@ -28,12 +32,12 @@ const runner = {
 
         const data = {
           name: request.item.name,
+          executionTime: new Date(),
           method: request.request.method,
           url: request.request.url.toString(),
           statusCode: request.response.code,
           responseTimeInMilliseconds: request.response.responseTime,
-          sizeInBytes: request.response.size().total,
-          executionTime: new Date()
+          sizeInBytes: request.response.size().total
         };
 
         dataRequests.push(data);

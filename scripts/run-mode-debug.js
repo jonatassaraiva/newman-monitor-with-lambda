@@ -1,6 +1,17 @@
 'use strict';
 
 //
+// envirements
+require('dotenv').config();
+
+// const dynamodb = require('dynamodb')
+// dynamodb.AWS.config.update({
+//   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+//   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+//   region: process.env.AWS_REGION
+// });
+
+//
 // requere handler
 const handler = require('../src/handler');
 
@@ -12,4 +23,4 @@ const _callback = (err, data) => {
   console.log(data);
 }
 
-handler.runner({ }, { }, _callback);
+handler.runner({}, {}, _callback);

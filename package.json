@@ -17,6 +17,12 @@
   },
   "homepage": "https://github.com/jonatassaraiva/newman-monitor-with-lambda#readme",
   "dependencies": {
+    "dynamodb": "^1.0.0",
+    "joi": "^13.1.0",
+    "moment": "^2.20.1",
     "newman": "^3.9.2"
+  },
+  "devDependencies": {
+    "dotenv": "^4.0.0"
   }
 }
