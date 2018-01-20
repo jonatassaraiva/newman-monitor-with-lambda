@@ -1,0 +1,36 @@
+service: newman-monitor
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  region: us-east-1
+  stage: v1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - logs:*
+        - xray:*
+        - dynamodb:*
+      Resource: "*"
+  environment:
+      ENABLE_XRAY: true
+
+functions:
+  runner:
+    name: newman-monitor-runner-${self:provider.stage}
+    handler: src/handler.runner
+    description: Runner to resquests in colection
+    memorySize: 512
+    timeout: 300
+    events:
+      - schedule:
+          rate: rate(10 minutes)
+
+custom:
+  stage: "${opt:stage, self:provider.stage}"
+
+package:
+  exclude:
+    - .scripts/**
+    - .vscode/**
+    - tests/**

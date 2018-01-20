@@ -25,23 +25,23 @@ const runner = {
             return reject(err);
           });
       })
-      .on('request', (err, request) => {
-        if (err) { 
-          return; 
-        }
+        .on('request', (err, request) => {
+          if (err) {
+            return;
+          }
 
-        const data = {
-          name: request.item.name,
-          executionTime: new Date(),
-          method: request.request.method,
-          url: request.request.url.toString(),
-          statusCode: request.response.code,
-          responseTimeInMilliseconds: request.response.responseTime,
-          sizeInBytes: request.response.size().total
-        };
+          const data = {
+            name: request.item.name,
+            executionTime: new Date(),
+            method: request.request.method,
+            url: request.request.url.toString(),
+            statusCode: request.response.code,
+            responseTimeInMilliseconds: request.response.responseTime,
+            sizeInBytes: request.response.size().total
+          };
 
-        dataRequests.push(data);
-      });
+          dataRequests.push(data);
+        });
     })
   }
 };

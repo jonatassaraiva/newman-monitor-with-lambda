@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/jonatassaraiva/newman-monitor-with-lambda#readme",
   "dependencies": {
+    "aws-sdk": "^2.184.0",
+    "aws-xray-sdk": "^1.1.7",
     "dynamodb": "^1.0.0",
     "joi": "^13.1.0",
     "moment": "^2.20.1",
